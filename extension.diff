@@ -1,0 +1,36 @@
+diff --git a/src/AsciiRenderer.java b/src/AsciiRenderer.java
+new file mode 100644
+index 0000000..645260b
+--- /dev/null
++++ b/src/AsciiRenderer.java
+@@ -0,0 +1,11 @@
++public class AsciiRenderer implements Renderer {
++    @Override
++    public String renderCircle(int radius) {
++        return "ASCII circle radius=" + radius;
++    }
++
++    @Override
++    public String renderSquare(int side) {
++        return "ASCII square side=" + side;
++    }
++}
+diff --git a/src/Main.java b/src/Main.java
+index 69fc3cc..38561b8 100644
+--- a/src/Main.java
++++ b/src/Main.java
+@@ -42,7 +42,13 @@ public class Main {
+                 "sameObject=" + sameObject + " | stateUnchanged=" + stateUnchanged
+                         + " | before=" + before + " | after=" + after);
+ 
+-        System.out.println("SUMMARY: " + passed + "/5 PASS");
++        test("T6", "Circle + AsciiRenderer", "ASCII circle radius=2", 
++                new Circle("C6", 2, new AsciiRenderer()).execute());
++
++        test("T7", "Square + AsciiRenderer", "ASCII square side=3", 
++                new Square("S7", 3, new AsciiRenderer()).execute());
++
++        System.out.println("SUMMARY: " + passed + "/7 PASS");
+     }
+ 
+     private static void test(String id, String classes, String expected, String actual) {
